@@ -25,7 +25,7 @@ def sigmoid(z):
     """# Notice that z can be a scalar, a vector or a matrix
     # return the sigmoid of input z"""
 
-    return 1 / (1 + np.exp(-z))
+    return 1.0 / (1.0 + np.exp(-z))
 
 
 def preprocess():
@@ -77,17 +77,14 @@ def preprocess():
     train_with_label = np.hstack([train_data, train_label])
     test_with_label = np.hstack([test_data, test_label])
 
-    shuffled_train = train_with_label.copy()
-    shuffled_test = test_with_label.copy()
+    np.random.shuffle(train_with_label)
+    np.random.shuffle(test_with_label)
 
-    np.random.shuffle(shuffled_train)
-    np.random.shuffle(shuffled_test)
+    validation_data = train_with_label[-10000:, :-1]
+    validation_label = train_with_label[-10000:, -1].reshape(10000, 1)
 
-    validation_data = shuffled_train[-10000:, :len(shuffled_train[0]) - 1]
-    validation_label = shuffled_train[-10000:, -1].reshape(10000, 1)
-
-    train_data = train_data[:50000, :]
-    train_label = train_label[:50000, :]
+    train_data = train_with_label[:50000, :-1]
+    train_label = train_with_label[:50000, -1].reshape(50000, 1)
 
     # Split the training sets into two sets of 50000 randomly sampled training examples and 10000 validation examples. 
     # Your code here.
@@ -142,21 +139,52 @@ def nnObjFunction(params, *args):
 
     w1 = params[0:n_hidden * (n_input + 1)].reshape((n_hidden, (n_input + 1)))
     w2 = params[(n_hidden * (n_input + 1)):].reshape((n_class, (n_hidden + 1)))
-    obj_val = 0
 
-    # Your code here
-    #
-    #
-    #
-    #
-    #
+    training_data = np.hstack(
+        [
+            training_data,
+            np.ones([training_data.shape[0], 1])
+        ]
+    )
+    hidden1_values = sigmoid(np.matmul(training_data, w1.transpose()))
 
-    # Make sure you reshape the gradient matrices to a 1D array. for instance if your gradient matrices are grad_w1 and grad_w2
-    # you would use code similar to the one below to create a flat array
-    # obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()),0)
-    obj_grad = np.array([])
+    hidden1_values = np.hstack([
+        hidden1_values,
+        np.ones([hidden1_values.shape[0], 1])
+    ])
 
-    return (obj_val, obj_grad)
+    out_values = sigmoid(np.matmul(hidden1_values, w2.transpose()))
+
+    # One hot encoding
+    truth_labels = np.zeros([training_label.shape[0], out_values.shape[1]])
+    for i in range(truth_labels.shape[0]):
+        truth_labels[i, int(training_label[i])] = 1
+
+    # Gotta understand and change code
+    delta_l = (truth_labels - out_values) * (1.0 - out_values) * out_values
+    J_2 = -(np.transpose(delta_l).dot(hidden1_values[:, :-1]))
+
+    grad_w2 = (np.add((lambdaval * w2[:, :-1]), J_2)) / training_data.shape[0]
+
+    ###Gradient of w1###
+    sum_w1 = delta_l.dot(w2[:, :-1])
+    step1 = -(1.0 - hidden1_values[:, :-1])
+    step2 = step1 * hidden1_values[:, :-1]
+    step3 = sum_w1 * step2
+    J_1 = (np.transpose(step3[:, 0:n_hidden]).dot(training_data[:, :-1]))
+    grad_w1 = (np.add((lambdaval * w1[:, :-1]), J_1)) / training_data.shape[0]
+
+    Eqn6 = np.sum((truth_labels - out_values) ** 2)
+    Eqn6 /= (2.0 * training_data.shape[0])
+    sum_w1_w2 = np.sum(w1) ** 2 + np.sum(w2) ** 2
+    obj_val = Eqn6 + lambdaval / 2.0 / training_data.shape[0] * sum_w1_w2
+
+    grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
+    grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
+
+    obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()), 0)
+
+    return obj_val, obj_grad
 
 
 def nnPredict(w1, w2, data):
@@ -176,8 +204,20 @@ def nnPredict(w1, w2, data):
     % Output: 
     % label: a column vector of predicted labels"""
 
-    labels = np.array([])
-    # Your code here
+    labels = np.empty([data.shape[0], 1])
+
+    data = np.hstack([data, np.ones([data.shape[0], 1])])
+
+    hidden1_values = sigmoid(np.matmul(data, w1.transpose()))
+    hidden1_values = np.hstack([
+        hidden1_values,
+        np.ones([hidden1_values.shape[0], 1])
+    ])
+
+    out_values = sigmoid(np.matmul(hidden1_values, w2.transpose()))
+
+    for index in range(0, out_values.shape[0]):
+        labels[index] = np.argmax(out_values[index])
 
     return labels
 
@@ -203,7 +243,6 @@ initial_w2 = initializeWeights(n_hidden, n_class)
 
 # unroll 2 weight matrices into single column vector
 initialWeights = np.concatenate((initial_w1.flatten(), initial_w2.flatten()), 0)
-
 # set the regularization hyper-parameter
 lambdaval = 0
 
@@ -215,6 +254,7 @@ opts = {'maxiter': 50}  # Preferred value.
 
 nn_params = minimize(nnObjFunction, initialWeights, jac=True, args=args, method='CG', options=opts)
 
+print("Training done")
 # In Case you want to use fmin_cg, you may have to split the nnObjectFunction to two functions nnObjFunctionVal
 # and nnObjGradient. Check documentation for this function before you proceed.
 # nn_params, cost = fmin_cg(nnObjFunctionVal, initialWeights, nnObjGradient,args = args, maxiter = 50)
