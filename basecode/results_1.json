@@ -1,0 +1,457 @@
+[
+  {
+    "regularization": 0,
+    "hidden": 2,
+    "train_acc": "9.873999999999999",
+    "validation_acc": "9.81",
+    "test_acc": "9.58"
+  },
+  {
+    "regularization": 0,
+    "hidden": 256,
+    "train_acc": "94.61",
+    "validation_acc": "93.23",
+    "test_acc": "93.64"
+  },
+  {
+    "regularization": 0,
+    "hidden": 512,
+    "train_acc": "95.706",
+    "validation_acc": "94.04",
+    "test_acc": "94.43"
+  },
+  {
+    "regularization": 0,
+    "hidden": 1024,
+    "train_acc": "93.992",
+    "validation_acc": "92.2",
+    "test_acc": "93.08999999999999"
+  },
+  {
+    "regularization": 0,
+    "hidden": 2048,
+    "train_acc": "68.002",
+    "validation_acc": "66.67999999999999",
+    "test_acc": "68.04"
+  },
+  {
+    "regularization": 5,
+    "hidden": 2,
+    "train_acc": "11.206000000000001",
+    "validation_acc": "11.39",
+    "test_acc": "11.35"
+  },
+  {
+    "regularization": 5,
+    "hidden": 256,
+    "train_acc": "84.93",
+    "validation_acc": "84.42",
+    "test_acc": "85.52"
+  },
+  {
+    "regularization": 5,
+    "hidden": 512,
+    "train_acc": "82.606",
+    "validation_acc": "82.6",
+    "test_acc": "83.26"
+  },
+  {
+    "regularization": 5,
+    "hidden": 1024,
+    "train_acc": "71.206",
+    "validation_acc": "72.05",
+    "test_acc": "72.34"
+  },
+  {
+    "regularization": 5,
+    "hidden": 2048,
+    "train_acc": "11.200000000000001",
+    "validation_acc": "11.43",
+    "test_acc": "11.35"
+  },
+  {
+    "regularization": 10,
+    "hidden": 2,
+    "train_acc": "9.034",
+    "validation_acc": "8.99",
+    "test_acc": "8.92"
+  },
+  {
+    "regularization": 10,
+    "hidden": 256,
+    "train_acc": "85.954",
+    "validation_acc": "85.03",
+    "test_acc": "86.16"
+  },
+  {
+    "regularization": 10,
+    "hidden": 512,
+    "train_acc": "14.63",
+    "validation_acc": "13.700000000000001",
+    "test_acc": "14.44"
+  },
+  {
+    "regularization": 10,
+    "hidden": 1024,
+    "train_acc": "22.918",
+    "validation_acc": "22.7",
+    "test_acc": "23.830000000000002"
+  },
+  {
+    "regularization": 10,
+    "hidden": 2048,
+    "train_acc": "68.022",
+    "validation_acc": "66.95",
+    "test_acc": "68.56"
+  },
+  {
+    "regularization": 15,
+    "hidden": 2,
+    "train_acc": "9.902",
+    "validation_acc": "9.719999999999999",
+    "test_acc": "9.8"
+  },
+  {
+    "regularization": 15,
+    "hidden": 256,
+    "train_acc": "74.52",
+    "validation_acc": "73.99",
+    "test_acc": "74.74"
+  },
+  {
+    "regularization": 15,
+    "hidden": 512,
+    "train_acc": "16.76",
+    "validation_acc": "16.8",
+    "test_acc": "16.48"
+  },
+  {
+    "regularization": 15,
+    "hidden": 1024,
+    "train_acc": "19.112000000000002",
+    "validation_acc": "18.72",
+    "test_acc": "19.16"
+  },
+  {
+    "regularization": 15,
+    "hidden": 2048,
+    "train_acc": "13.924",
+    "validation_acc": "13.55",
+    "test_acc": "13.34"
+  },
+  {
+    "regularization": 20,
+    "hidden": 2,
+    "train_acc": "9.772",
+    "validation_acc": "9.65",
+    "test_acc": "9.74"
+  },
+  {
+    "regularization": 20,
+    "hidden": 256,
+    "train_acc": "26.735999999999997",
+    "validation_acc": "26.939999999999998",
+    "test_acc": "27.46"
+  },
+  {
+    "regularization": 20,
+    "hidden": 512,
+    "train_acc": "13.447999999999999",
+    "validation_acc": "13.530000000000001",
+    "test_acc": "13.41"
+  },
+  {
+    "regularization": 20,
+    "hidden": 1024,
+    "train_acc": "11.494",
+    "validation_acc": "11.55",
+    "test_acc": "11.3"
+  },
+  {
+    "regularization": 20,
+    "hidden": 2048,
+    "train_acc": "18.27",
+    "validation_acc": "18.25",
+    "test_acc": "17.990000000000002"
+  },
+  {
+    "regularization": 25,
+    "hidden": 2,
+    "train_acc": "9.884",
+    "validation_acc": "10.16",
+    "test_acc": "10.32"
+  },
+  {
+    "regularization": 25,
+    "hidden": 256,
+    "train_acc": "11.452",
+    "validation_acc": "11.49",
+    "test_acc": "11.68"
+  },
+  {
+    "regularization": 25,
+    "hidden": 512,
+    "train_acc": "33.564",
+    "validation_acc": "34.64",
+    "test_acc": "34.239999999999995"
+  },
+  {
+    "regularization": 25,
+    "hidden": 1024,
+    "train_acc": "9.544",
+    "validation_acc": "9.45",
+    "test_acc": "9.33"
+  },
+  {
+    "regularization": 25,
+    "hidden": 2048,
+    "train_acc": "71.348",
+    "validation_acc": "70.27",
+    "test_acc": "71.78999999999999"
+  },
+  {
+    "regularization": 30,
+    "hidden": 2,
+    "train_acc": "11.652",
+    "validation_acc": "11.33",
+    "test_acc": "11.57"
+  },
+  {
+    "regularization": 30,
+    "hidden": 256,
+    "train_acc": "22.144",
+    "validation_acc": "22.02",
+    "test_acc": "21.64"
+  },
+  {
+    "regularization": 30,
+    "hidden": 512,
+    "train_acc": "60.019999999999996",
+    "validation_acc": "57.66",
+    "test_acc": "59.69"
+  },
+  {
+    "regularization": 30,
+    "hidden": 1024,
+    "train_acc": "11.347999999999999",
+    "validation_acc": "11.360000000000001",
+    "test_acc": "11.42"
+  },
+  {
+    "regularization": 30,
+    "hidden": 2048,
+    "train_acc": "13.088",
+    "validation_acc": "12.94",
+    "test_acc": "12.21"
+  },
+  {
+    "regularization": 35,
+    "hidden": 2,
+    "train_acc": "10.218",
+    "validation_acc": "10.22",
+    "test_acc": "10.100000000000001"
+  },
+  {
+    "regularization": 35,
+    "hidden": 256,
+    "train_acc": "18.044",
+    "validation_acc": "17.75",
+    "test_acc": "18.240000000000002"
+  },
+  {
+    "regularization": 35,
+    "hidden": 512,
+    "train_acc": "24.122",
+    "validation_acc": "24.82",
+    "test_acc": "24.45"
+  },
+  {
+    "regularization": 35,
+    "hidden": 1024,
+    "train_acc": "17.041999999999998",
+    "validation_acc": "17.88",
+    "test_acc": "17.0"
+  },
+  {
+    "regularization": 35,
+    "hidden": 2048,
+    "train_acc": "14.96",
+    "validation_acc": "14.29",
+    "test_acc": "15.45"
+  },
+  {
+    "regularization": 40,
+    "hidden": 2,
+    "train_acc": "9.927999999999999",
+    "validation_acc": "9.94",
+    "test_acc": "10.32"
+  },
+  {
+    "regularization": 40,
+    "hidden": 256,
+    "train_acc": "78.50399999999999",
+    "validation_acc": "78.36999999999999",
+    "test_acc": "79.33"
+  },
+  {
+    "regularization": 40,
+    "hidden": 512,
+    "train_acc": "16.302",
+    "validation_acc": "16.439999999999998",
+    "test_acc": "16.39"
+  },
+  {
+    "regularization": 40,
+    "hidden": 1024,
+    "train_acc": "16.704",
+    "validation_acc": "17.52",
+    "test_acc": "16.91"
+  },
+  {
+    "regularization": 40,
+    "hidden": 2048,
+    "train_acc": "12.716",
+    "validation_acc": "12.04",
+    "test_acc": "12.770000000000001"
+  },
+  {
+    "regularization": 45,
+    "hidden": 2,
+    "train_acc": "9.78",
+    "validation_acc": "9.74",
+    "test_acc": "9.83"
+  },
+  {
+    "regularization": 45,
+    "hidden": 256,
+    "train_acc": "13.483999999999998",
+    "validation_acc": "13.68",
+    "test_acc": "13.88"
+  },
+  {
+    "regularization": 45,
+    "hidden": 512,
+    "train_acc": "20.791999999999998",
+    "validation_acc": "20.580000000000002",
+    "test_acc": "21.13"
+  },
+  {
+    "regularization": 45,
+    "hidden": 1024,
+    "train_acc": "15.614",
+    "validation_acc": "15.57",
+    "test_acc": "15.97"
+  },
+  {
+    "regularization": 45,
+    "hidden": 2048,
+    "train_acc": "10.318",
+    "validation_acc": "10.09",
+    "test_acc": "9.68"
+  },
+  {
+    "regularization": 50,
+    "hidden": 2,
+    "train_acc": "9.606",
+    "validation_acc": "10.48",
+    "test_acc": "9.74"
+  },
+  {
+    "regularization": 50,
+    "hidden": 256,
+    "train_acc": "14.462",
+    "validation_acc": "14.469999999999999",
+    "test_acc": "14.59"
+  },
+  {
+    "regularization": 50,
+    "hidden": 512,
+    "train_acc": "18.948",
+    "validation_acc": "18.54",
+    "test_acc": "19.71"
+  },
+  {
+    "regularization": 50,
+    "hidden": 1024,
+    "train_acc": "72.32600000000001",
+    "validation_acc": "72.25",
+    "test_acc": "72.78999999999999"
+  },
+  {
+    "regularization": 50,
+    "hidden": 2048,
+    "train_acc": "11.236",
+    "validation_acc": "10.76",
+    "test_acc": "11.31"
+  },
+  {
+    "regularization": 55,
+    "hidden": 2,
+    "train_acc": "9.888",
+    "validation_acc": "9.790000000000001",
+    "test_acc": "9.8"
+  },
+  {
+    "regularization": 55,
+    "hidden": 256,
+    "train_acc": "67.33200000000001",
+    "validation_acc": "66.92",
+    "test_acc": "67.44"
+  },
+  {
+    "regularization": 55,
+    "hidden": 512,
+    "train_acc": "17.916",
+    "validation_acc": "17.9",
+    "test_acc": "17.65"
+  },
+  {
+    "regularization": 55,
+    "hidden": 1024,
+    "train_acc": "9.934",
+    "validation_acc": "9.89",
+    "test_acc": "9.56"
+  },
+  {
+    "regularization": 55,
+    "hidden": 2048,
+    "train_acc": "12.482",
+    "validation_acc": "12.809999999999999",
+    "test_acc": "12.23"
+  },
+  {
+    "regularization": 60,
+    "hidden": 2,
+    "train_acc": "9.868",
+    "validation_acc": "9.89",
+    "test_acc": "9.8"
+  },
+  {
+    "regularization": 60,
+    "hidden": 256,
+    "train_acc": "46.426",
+    "validation_acc": "46.739999999999995",
+    "test_acc": "46.43"
+  },
+  {
+    "regularization": 60,
+    "hidden": 512,
+    "train_acc": "16.772000000000002",
+    "validation_acc": "16.61",
+    "test_acc": "16.43"
+  },
+  {
+    "regularization": 60,
+    "hidden": 1024,
+    "train_acc": "6.804",
+    "validation_acc": "6.63",
+    "test_acc": "6.4399999999999995"
+  },
+  {
+    "regularization": 60,
+    "hidden": 2048,
+    "train_acc": "16.426",
+    "validation_acc": "17.28",
+    "test_acc": "15.8"
+  }
+]
