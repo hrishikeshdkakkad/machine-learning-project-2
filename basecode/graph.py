@@ -7,12 +7,6 @@ import numpy as np
 with open('results.json') as f:
     data = json.load(f)
 
-# x_axis = []
-# y_axis_train_acc = []
-# y_axis_validation_acc = []
-# y_axis_test_acc = []
-
-# x_tick_list = []
 
 plot_data = {}
 
@@ -39,20 +33,21 @@ for key, value in plot_data.items():
     fig = plt.figure(figsize=(6, 5))    
     plt.xlabel('Regularization', fontweight ='bold', fontsize = 15)
     plt.ylabel('Acc', fontweight ='bold', fontsize = 15)
-    plt.xticks([r + barWidth for r in range(len(value))],
-        x_axis)
-    plt.title("Regularization vs Acc")
+    plt.xticks()
+    plt.title("Regularization vs Acc for hidden layer " + str(key))
     n = len(x_axis)
     width = 0.25
-    plt.bar(np.arange(len(y_axis_train_acc)), y_axis_train_acc, color='black',
+    plt.bar(np.arange(len(y_axis_train_acc)), y_axis_train_acc, color='blue',
                 width=width, edgecolor='black',
                 label='y_axis_train_acc')
 
-    plt.bar(np.arange(len(y_axis_validation_acc)), y_axis_validation_acc, color='blue',
+    plt.bar(np.arange(len(y_axis_validation_acc)) + width, y_axis_validation_acc, color='yellow',
                 width=width, edgecolor='black',
                 label='y_axis_validation_acc')
-    plt.bar(np.arange(len(y_axis_test_acc)), y_axis_test_acc, color='red',
+    plt.bar(np.arange(len(y_axis_test_acc)) + width*2, y_axis_test_acc, color='green',
                 width=width, edgecolor='black',
                 label='y_axis_test_acc')
+    # plt.xlim(0, 100)
+    plt.ylim(0,100)
     plt.legend()
     plt.show()
