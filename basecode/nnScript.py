@@ -162,13 +162,11 @@ def nnObjFunction(params, *args):
     for i in range(truth_labels.shape[0]):
         truth_labels[i, int(training_label[i])] = 1
 
-    # Gotta understand and change code
     delta_l = (truth_labels - out_values) * (1.0 - out_values) * out_values
     J_2 = -(np.transpose(delta_l).dot(hidden1_values[:, :-1]))
 
     grad_w2 = (np.add((lambdaval * w2[:, :-1]), J_2)) / training_data.shape[0]
 
-    ###Gradient of w1###
     sum_w1 = delta_l.dot(w2[:, :-1])
     step1 = -(1.0 - hidden1_values[:, :-1])
     step2 = step1 * hidden1_values[:, :-1]
@@ -176,10 +174,10 @@ def nnObjFunction(params, *args):
     J_1 = (np.transpose(step3[:, 0:n_hidden]).dot(training_data[:, :-1]))
     grad_w1 = (np.add((lambdaval * w1[:, :-1]), J_1)) / training_data.shape[0]
 
-    Eqn6 = np.sum((truth_labels - out_values) ** 2)
-    Eqn6 /= (2.0 * training_data.shape[0])
+    tot_err = np.sum((truth_labels - out_values) ** 2)
+    tot_err /= (2.0 * training_data.shape[0])
     sum_w1_w2 = np.sum(w1) ** 2 + np.sum(w2) ** 2
-    obj_val = Eqn6 + lambdaval / 2.0 / training_data.shape[0] * sum_w1_w2
+    obj_val = tot_err + lambdaval / 2.0 / training_data.shape[0] * sum_w1_w2
 
     grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
     grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
@@ -261,7 +259,7 @@ def runScript(reg_param, hidden):
 
     print("Training done")
 
-    print("lambda:"+str(lambdaval), "hidden:"+str(n_hidden))
+    print("lambda:" + str(lambdaval), "hidden:" + str(n_hidden))
     # In Case you want to use fmin_cg, you may have to split the nnObjectFunction to two functions nnObjFunctionVal
     # and nnObjGradient. Check documentation for this function before you proceed.
     # nn_params, cost = fmin_cg(nnObjFunctionVal, initialWeights, nnObjGradient,args = args, maxiter = 50)
@@ -296,6 +294,5 @@ def runScript(reg_param, hidden):
     print('\n Test set Accuracy:' + test_acc + '%')
 
     print('\nEnd Time: ' + strftime("%Y-%m-%d %H:%M:%S"))
-
 
     return train_acc, validation_acc, test_acc

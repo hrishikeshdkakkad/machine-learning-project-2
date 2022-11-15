@@ -13,25 +13,23 @@ class ExperimentResult:
 
 exp_result_list = []
 for i in range(0, 61, 5):
-    j = 256
-    p = 1
+    j = 2
+    p = 8
 
     train, valid, test = nnScript.runScript(i, j)
     exp_result_list.append(ExperimentResult(i, j, train, valid, test))
 
-print(exp_result_list)
+    while j <= 1024:
+        j = pow(2, p)
+        train, valid, test = nnScript.runScript(i, j)
+        exp_result_list.append(ExperimentResult(i, j, train, valid, test))
+        # experiments["Lambda=" + str(i) + " and hidden = " + str(j)] = (nnScript.runScript(i, j))
+        p += 1
 
-#     while j <= 65:
-#         j = pow(2, p)
-#         train, valid, test = nnScript.runScript(i, j)
-#         exp_result_list.append(ExperimentResult(i, j, train, valid, test))
-#         # experiments["Lambda=" + str(i) + " and hidden = " + str(j)] = (nnScript.runScript(i, j))
-#         p += 1
-#
-# # max_acc = max(experiments, key=experiments.get)
-# jsonStr = json.dumps([obj.__dict__ for obj in exp_result_list])
-# f = open("results.json", "w")
-# f.write(jsonStr)
-# f.close()
+# max_acc = max(experiments, key=experiments.get)
+jsonStr = json.dumps([obj.__dict__ for obj in exp_result_list])
+f = open("results_1.json", "w")
+f.write(jsonStr)
+f.close()
 
 

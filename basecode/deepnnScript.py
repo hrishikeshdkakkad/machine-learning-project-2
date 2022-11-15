@@ -19,7 +19,7 @@ def create_multilayer_perceptron():
             super().__init__()
 
             # Network Parameters
-            n_hidden_1 = 256  # 1st layer number of features
+            n_hidden_1 = 1024  # 1st layer number of features
             n_hidden_2 = 256  # 2nd layer number of features
             n_input = 2376  # data input
             n_classes = 2
@@ -107,9 +107,9 @@ def test(dataloader, model, loss_fn):
 
 
 # Parameters
-learning_rate = 0.0001
-training_epochs = 50
-batch_size = 100
+learning_rate = 0.005
+training_epochs = 100
+batch_size = 150
 
 # Get cpu or gpu device for training.
 device = "cuda" if torch.cuda.is_available() else "cpu"

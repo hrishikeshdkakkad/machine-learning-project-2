@@ -11,12 +11,12 @@ from sklearn.metrics import confusion_matrix
 import time
 from datetime import timedelta
 
-
 # We know that MNIST images are 28 pixels in each dimension.
 img_size = 28
 
 # Tuple with height and width of images used to reshape arrays.
 img_shape = (img_size, img_size)
+
 
 def create_cnn():
     class cnn(nn.Module):
@@ -160,7 +160,6 @@ def test(dataloader, model, loss_fn, show_example_errors=False, show_confusion_m
             y_true.extend(y.cpu().numpy())
             y_pred.extend(pred.argmax(1).cpu().numpy())
 
-
     test_loss /= num_batches
     correct /= size
     print(f"Test Error: \n Accuracy: {(100 * correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
@@ -192,6 +191,7 @@ def optimize(iterations, train_dataloader, model, cost, optimizer):
     # Print the time-usage.
     print("Time usage: " + str(timedelta(seconds=int(round(time_dif)))))
 
+
 learning_rate = 1e-4
 train_batch_size = 64
 test_batch_size = 256
@@ -213,7 +213,6 @@ testset = datasets.MNIST(root='./data', train=False, transform=transforms.ToTens
 train_dataloader = DataLoader(trainset, batch_size=train_batch_size, shuffle=True)
 test_dataloader = DataLoader(testset, batch_size=test_batch_size, shuffle=False)
 
-
 test(test_dataloader, model, cost)
 optimize(1, train_dataloader, model, cost, optimizer)
 test(test_dataloader, model, cost, True, True)
@@ -224,6 +223,6 @@ test(test_dataloader, model, cost, show_example_errors=False)
 
 # optimize(900, train_dataloader, model, cost, optimizer)
 # test(test_dataloader, model, cost, show_example_errors=False)
-
+#
 # optimize(9000, train_dataloader, model, cost, optimizer)
 # test(test_dataloader, model, cost, show_example_errors=False)
