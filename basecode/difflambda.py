@@ -12,14 +12,11 @@ class ExperimentResult:
 
 
 exp_result_list = []
-for i in range(0, 61, 5):
+for i in range(0, 61, 10):
     j = 2
-    p = 8
+    p = 1
 
-    train, valid, test = nnScript.runScript(i, j)
-    exp_result_list.append(ExperimentResult(i, j, train, valid, test))
-
-    while j <= 1024:
+    while p <= 9:
         j = pow(2, p)
         train, valid, test = nnScript.runScript(i, j)
         exp_result_list.append(ExperimentResult(i, j, train, valid, test))
@@ -28,7 +25,7 @@ for i in range(0, 61, 5):
 
 # max_acc = max(experiments, key=experiments.get)
 jsonStr = json.dumps([obj.__dict__ for obj in exp_result_list])
-f = open("results_1.json", "w")
+f = open("results.json", "w")
 f.write(jsonStr)
 f.close()
 

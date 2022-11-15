@@ -68,8 +68,10 @@ def preprocess():
             test_data.append(test_ex)
             test_label.append(i)
 
-    train_data = np.array(train_data)
-    test_data = np.array(test_data)
+    train_data = np.array(train_data) / 255
+    # train_data = train_data[:, ~np.all(train_data[1:] == train_data[:-1], axis=0)]
+    test_data = np.array(test_data) / 255
+    # test_data = test_data[:, ~np.all(test_data[1:] == test_data[:-1], axis=0)]
     train_label = np.array(train_label)
     test_label = np.array(test_label)
 
