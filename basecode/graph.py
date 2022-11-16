@@ -31,9 +31,8 @@ for key, value in plot_data.items():
     fig = plt.figure(figsize=(6, 5))
     plt.xlabel('Regularization', fontweight='bold', fontsize=15)
     plt.ylabel('Acc', fontweight='bold', fontsize=15)
-    plt.xticks()
+    plt.xticks(np.arange(0, 7), x_axis)
     plt.title("Regularization vs Acc for " + str(key) + " hidden neurons")
-    n = len(x_axis)
     width = 0.25
     plt.bar(np.arange(len(y_axis_train_acc)), y_axis_train_acc, color='blue',
             width=width, edgecolor='black',
@@ -45,7 +44,6 @@ for key, value in plot_data.items():
     plt.bar(np.arange(len(y_axis_test_acc)) + width * 2, y_axis_test_acc, color='green',
             width=width, edgecolor='black',
             label='y_axis_test_acc')
-    # plt.xlim(0, 100)
     plt.ylim(0, 100)
     plt.yticks(np.arange(0, 100, 10))
     plt.legend()
