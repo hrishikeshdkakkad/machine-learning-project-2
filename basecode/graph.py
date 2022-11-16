@@ -1,9 +1,6 @@
-import os
-
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.image as img
 import json
+
+import matplotlib.pyplot as plt
 import numpy as np
 
 with open('results.json') as f:
@@ -50,6 +47,7 @@ for key, value in plot_data.items():
             label='y_axis_test_acc')
     # plt.xlim(0, 100)
     plt.ylim(0, 100)
+    plt.yticks(np.arange(0, 100, 10))
     plt.legend()
     # plt.show()
     plt.savefig("graphs/"+str(key)+"_hidden_neurons.png")
