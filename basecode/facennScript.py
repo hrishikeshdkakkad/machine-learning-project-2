@@ -57,17 +57,17 @@ def nnObjFunction(params, *args):
     for i in range(truth_labels.shape[0]):
         truth_labels[i, int(training_label[i])] = 1
 
-    delta_l = (truth_labels - out_values) * (1.0 - out_values) * out_values
-    J_2 = -(np.transpose(delta_l).dot(hidden1_values[:, :-1]))
+    delta_l = (truth_labels - out_values)
+    grad_w2 = delta_l @ out_values
 
-    grad_w2 = (np.add((lambdaval * w2[:, :-1]), J_2)) / training_data.shape[0]
+    grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
 
-    sum_w1 = delta_l.dot(w2[:, :-1])
-    step1 = -(1.0 - hidden1_values[:, :-1])
-    step2 = step1 * hidden1_values[:, :-1]
-    step3 = sum_w1 * step2
-    J_1 = (np.transpose(step3[:, 0:n_hidden]).dot(training_data[:, :-1]))
-    grad_w1 = (np.add((lambdaval * w1[:, :-1]), J_1)) / training_data.shape[0]
+    sum_delta_weight2 = np.sum(delta_l @ w2)
+    # (sum_delta_weight2 * training_data[:, :-1]
+    one_minus_z = (1.0 - hidden1_values[:, :-1])
+    sum_dot_input = sum_delta_weight2 * training_data[:, :-1]
+    grad_w1 = (one_minus_z * hidden1_values[:, :-1]) * sum_dot_input
+    grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
 
     tot_err = np.sum((truth_labels - out_values) ** 2)
     tot_err /= (2.0 * training_data.shape[0])
@@ -124,13 +124,13 @@ train_data, train_label, validation_data, validation_label, test_data, test_labe
 # set the number of nodes in input unit (not including bias unit)
 n_input = train_data.shape[1]
 # set the number of nodes in hidden unit (not including bias unit)
-n_hidden = 512
+n_hidden = 32
 # set the number of nodes in output unit
 n_class = 2
 
 # initialize the weights into some random matrices
-initial_w1 = initializeWeights(n_input, n_hidden);
-initial_w2 = initializeWeights(n_hidden, n_class);
+initial_w1 = initializeWeights(n_input, n_hidden)
+initial_w2 = initializeWeights(n_hidden, n_class)
 # unroll 2 weight matrices into single column vector
 initialWeights = np.concatenate((initial_w1.flatten(), initial_w2.flatten()), 0)
 # set the regularization hyper-parameter

@@ -1,6 +1,7 @@
+from datetime import timedelta
 from time import strftime
-
 import numpy as np
+import time
 from scipy.optimize import minimize
 from scipy.io import loadmat
 from math import sqrt
@@ -180,6 +181,7 @@ def nnObjFunction(params, *args):
     tot_err /= (2.0 * training_data.shape[0])
     sum_w1_w2 = np.sum(w1) ** 2 + np.sum(w2) ** 2
     obj_val = tot_err + lambdaval / 2.0 / training_data.shape[0] * sum_w1_w2
+    print(obj_val)
 
     grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
     grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
@@ -231,6 +233,7 @@ def runScript(reg_param, hidden):
     train_data, train_label, validation_data, validation_label, test_data, test_label = preprocess()
 
     print('Start Time: ' + strftime("%Y-%m-%d %H:%M:%S"))
+    start_time = time.time()
     #  Train Neural Network
 
     # set the number of nodes in input unit (not including bias unit)
@@ -260,6 +263,14 @@ def runScript(reg_param, hidden):
     nn_params = minimize(nnObjFunction, initialWeights, jac=True, args=args, method='CG', options=opts)
 
     print("Training done")
+
+    end_time = time.time()
+
+    # Difference between start and end-times.
+    time_dif = end_time - start_time
+    time_del = str(timedelta(seconds=int(round(time_dif))))
+
+    print("Time usage: " + time_del)
 
     print("lambda:" + str(lambdaval), "hidden:" + str(n_hidden))
     # In Case you want to use fmin_cg, you may have to split the nnObjectFunction to two functions nnObjFunctionVal
@@ -295,6 +306,4 @@ def runScript(reg_param, hidden):
 
     print('\n Test set Accuracy:' + test_acc + '%')
 
-    print('\nEnd Time: ' + strftime("%Y-%m-%d %H:%M:%S"))
-
-    return train_acc, validation_acc, test_acc
+    return train_acc, validation_acc, test_acc, time_del
