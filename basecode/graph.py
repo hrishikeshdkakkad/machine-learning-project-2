@@ -53,8 +53,8 @@ for key, value in plot_data.items():
             width=width, edgecolor='black',
             label='y_axis_test_acc')
     plt.ylim(0, 100)
-    plt.yticks(np.arange(0, 100, 10))
-    plt.legend()
+    plt.yticks(np.arange(0, 101, 5))
+    # plt.legend()
     # plt.show()
     plt.savefig("graphs/"+str(key)+"_hidden_neurons.png")
     

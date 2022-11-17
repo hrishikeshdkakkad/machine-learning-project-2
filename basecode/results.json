@@ -1,394 +1,394 @@
 [
-    {
-        "regularization": 0,
-        "hidden": 2,
-        "train_acc": "10.485999999999999",
-        "validation_acc": "10.22",
-        "test_acc": "10.280000000000001",
-        "training_time": "0:00:10"
-    },
-    {
-        "regularization": 0,
-        "hidden": 4,
-        "train_acc": "20.642",
-        "validation_acc": "21.08",
-        "test_acc": "21.05",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 0,
-        "hidden": 8,
-        "train_acc": "31.241999999999997",
-        "validation_acc": "30.84",
-        "test_acc": "32.25",
-        "training_time": "0:00:15"
-    },
-    {
-        "regularization": 0,
-        "hidden": 16,
-        "train_acc": "34.542",
-        "validation_acc": "34.56",
-        "test_acc": "35.04",
-        "training_time": "0:00:20"
-    },
-    {
-        "regularization": 0,
-        "hidden": 32,
-        "train_acc": "25.178",
-        "validation_acc": "25.25",
-        "test_acc": "26.38",
-        "training_time": "0:00:19"
-    },
-    {
-        "regularization": 0,
-        "hidden": 64,
-        "train_acc": "23.44",
-        "validation_acc": "22.98",
-        "test_acc": "23.630000000000003",
-        "training_time": "0:00:27"
-    },
-    {
-        "regularization": 0,
-        "hidden": 128,
-        "train_acc": "28.924",
-        "validation_acc": "28.22",
-        "test_acc": "28.810000000000002",
-        "training_time": "0:00:41"
-    },
-    {
-        "regularization": 10,
-        "hidden": 2,
-        "train_acc": "9.916",
-        "validation_acc": "9.6",
-        "test_acc": "9.58",
-        "training_time": "0:00:11"
-    },
-    {
-        "regularization": 10,
-        "hidden": 4,
-        "train_acc": "9.180000000000001",
-        "validation_acc": "9.3",
-        "test_acc": "9.17",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 10,
-        "hidden": 8,
-        "train_acc": "16.614",
-        "validation_acc": "16.45",
-        "test_acc": "17.06",
-        "training_time": "0:00:13"
-    },
-    {
-        "regularization": 10,
-        "hidden": 16,
-        "train_acc": "15.978",
-        "validation_acc": "16.150000000000002",
-        "test_acc": "16.07",
-        "training_time": "0:00:26"
-    },
-    {
-        "regularization": 10,
-        "hidden": 32,
-        "train_acc": "27.458",
-        "validation_acc": "27.1",
-        "test_acc": "27.74",
-        "training_time": "0:00:22"
-    },
-    {
-        "regularization": 10,
-        "hidden": 64,
-        "train_acc": "14.396",
-        "validation_acc": "13.969999999999999",
-        "test_acc": "14.82",
-        "training_time": "0:00:20"
-    },
-    {
-        "regularization": 10,
-        "hidden": 128,
-        "train_acc": "16.758",
-        "validation_acc": "16.82",
-        "test_acc": "16.830000000000002",
-        "training_time": "0:00:46"
-    },
-    {
-        "regularization": 20,
-        "hidden": 2,
-        "train_acc": "10.686",
-        "validation_acc": "10.42",
-        "test_acc": "10.66",
-        "training_time": "0:00:08"
-    },
-    {
-        "regularization": 20,
-        "hidden": 4,
-        "train_acc": "20.878",
-        "validation_acc": "20.84",
-        "test_acc": "20.78",
-        "training_time": "0:00:11"
-    },
-    {
-        "regularization": 20,
-        "hidden": 8,
-        "train_acc": "25.214",
-        "validation_acc": "25.11",
-        "test_acc": "25.35",
-        "training_time": "0:00:14"
-    },
-    {
-        "regularization": 20,
-        "hidden": 16,
-        "train_acc": "19.678",
-        "validation_acc": "19.85",
-        "test_acc": "19.85",
-        "training_time": "0:00:26"
-    },
-    {
-        "regularization": 20,
-        "hidden": 32,
-        "train_acc": "17.174",
-        "validation_acc": "16.66",
-        "test_acc": "16.97",
-        "training_time": "0:00:20"
-    },
-    {
-        "regularization": 20,
-        "hidden": 64,
-        "train_acc": "24.514",
-        "validation_acc": "24.88",
-        "test_acc": "24.43",
-        "training_time": "0:00:25"
-    },
-    {
-        "regularization": 20,
-        "hidden": 128,
-        "train_acc": "28.73",
-        "validation_acc": "28.720000000000002",
-        "test_acc": "29.26",
-        "training_time": "0:00:39"
-    },
-    {
-        "regularization": 30,
-        "hidden": 2,
-        "train_acc": "11.582",
-        "validation_acc": "11.450000000000001",
-        "test_acc": "11.55",
-        "training_time": "0:00:11"
-    },
-    {
-        "regularization": 30,
-        "hidden": 4,
-        "train_acc": "11.16",
-        "validation_acc": "11.62",
-        "test_acc": "11.35",
-        "training_time": "0:00:10"
-    },
-    {
-        "regularization": 30,
-        "hidden": 8,
-        "train_acc": "20.232",
-        "validation_acc": "19.82",
-        "test_acc": "19.48",
-        "training_time": "0:00:19"
-    },
-    {
-        "regularization": 30,
-        "hidden": 16,
-        "train_acc": "15.581999999999999",
-        "validation_acc": "15.47",
-        "test_acc": "16.3",
-        "training_time": "0:00:24"
-    },
-    {
-        "regularization": 30,
-        "hidden": 32,
-        "train_acc": "14.741999999999999",
-        "validation_acc": "14.93",
-        "test_acc": "15.160000000000002",
-        "training_time": "0:00:18"
-    },
-    {
-        "regularization": 30,
-        "hidden": 64,
-        "train_acc": "10.536",
-        "validation_acc": "10.02",
-        "test_acc": "10.33",
-        "training_time": "0:00:20"
-    },
-    {
-        "regularization": 30,
-        "hidden": 128,
-        "train_acc": "41.465999999999994",
-        "validation_acc": "40.699999999999996",
-        "test_acc": "41.71",
-        "training_time": "0:00:30"
-    },
-    {
-        "regularization": 40,
-        "hidden": 2,
-        "train_acc": "11.336",
-        "validation_acc": "10.74",
-        "test_acc": "11.35",
-        "training_time": "0:00:10"
-    },
-    {
-        "regularization": 40,
-        "hidden": 4,
-        "train_acc": "11.174000000000001",
-        "validation_acc": "11.59",
-        "test_acc": "11.35",
-        "training_time": "0:00:07"
-    },
-    {
-        "regularization": 40,
-        "hidden": 8,
-        "train_acc": "21.564",
-        "validation_acc": "21.060000000000002",
-        "test_acc": "21.740000000000002",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 40,
-        "hidden": 16,
-        "train_acc": "17.97",
-        "validation_acc": "18.11",
-        "test_acc": "18.5",
-        "training_time": "0:00:21"
-    },
-    {
-        "regularization": 40,
-        "hidden": 32,
-        "train_acc": "11.586",
-        "validation_acc": "11.25",
-        "test_acc": "11.61",
-        "training_time": "0:00:13"
-    },
-    {
-        "regularization": 40,
-        "hidden": 64,
-        "train_acc": "32.89",
-        "validation_acc": "32.05",
-        "test_acc": "33.129999999999995",
-        "training_time": "0:00:27"
-    },
-    {
-        "regularization": 40,
-        "hidden": 128,
-        "train_acc": "7.906000000000001",
-        "validation_acc": "8.200000000000001",
-        "test_acc": "8.17",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 50,
-        "hidden": 2,
-        "train_acc": "11.224",
-        "validation_acc": "11.28",
-        "test_acc": "11.35",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 50,
-        "hidden": 4,
-        "train_acc": "20.678",
-        "validation_acc": "20.53",
-        "test_acc": "20.669999999999998",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 50,
-        "hidden": 8,
-        "train_acc": "25.528000000000002",
-        "validation_acc": "25.869999999999997",
-        "test_acc": "26.150000000000002",
-        "training_time": "0:00:14"
-    },
-    {
-        "regularization": 50,
-        "hidden": 16,
-        "train_acc": "27.57",
-        "validation_acc": "26.56",
-        "test_acc": "27.6",
-        "training_time": "0:00:17"
-    },
-    {
-        "regularization": 50,
-        "hidden": 32,
-        "train_acc": "23.105999999999998",
-        "validation_acc": "24.21",
-        "test_acc": "23.23",
-        "training_time": "0:00:20"
-    },
-    {
-        "regularization": 50,
-        "hidden": 64,
-        "train_acc": "40.396",
-        "validation_acc": "40.82",
-        "test_acc": "41.04",
-        "training_time": "0:00:21"
-    },
-    {
-        "regularization": 50,
-        "hidden": 128,
-        "train_acc": "42.594",
-        "validation_acc": "42.559999999999995",
-        "test_acc": "43.38",
-        "training_time": "0:00:37"
-    },
-    {
-        "regularization": 60,
-        "hidden": 2,
-        "train_acc": "9.792",
-        "validation_acc": "10.24",
-        "test_acc": "10.13",
-        "training_time": "0:00:09"
-    },
-    {
-        "regularization": 60,
-        "hidden": 4,
-        "train_acc": "9.824",
-        "validation_acc": "10.059999999999999",
-        "test_acc": "9.58",
-        "training_time": "0:00:12"
-    },
-    {
-        "regularization": 60,
-        "hidden": 8,
-        "train_acc": "23.119999999999997",
-        "validation_acc": "23.28",
-        "test_acc": "23.400000000000002",
-        "training_time": "0:00:13"
-    },
-    {
-        "regularization": 60,
-        "hidden": 16,
-        "train_acc": "9.754",
-        "validation_acc": "10.37",
-        "test_acc": "9.86",
-        "training_time": "0:00:28"
-    },
-    {
-        "regularization": 60,
-        "hidden": 32,
-        "train_acc": "27.564",
-        "validation_acc": "27.389999999999997",
-        "test_acc": "27.700000000000003",
-        "training_time": "0:00:26"
-    },
-    {
-        "regularization": 60,
-        "hidden": 64,
-        "train_acc": "12.116",
-        "validation_acc": "12.21",
-        "test_acc": "12.06",
-        "training_time": "0:00:22"
-    },
-    {
-        "regularization": 60,
-        "hidden": 128,
-        "train_acc": "22.192",
-        "validation_acc": "22.12",
-        "test_acc": "22.48",
-        "training_time": "0:00:39"
-    }
+  {
+    "regularization": 0,
+    "hidden": 2,
+    "train_acc": "25.308000000000003",
+    "validation_acc": "25.41",
+    "test_acc": "25.52",
+    "training_time": "0:00:19"
+  },
+  {
+    "regularization": 0,
+    "hidden": 4,
+    "train_acc": "43.49",
+    "validation_acc": "43.22",
+    "test_acc": "42.67",
+    "training_time": "0:00:17"
+  },
+  {
+    "regularization": 0,
+    "hidden": 8,
+    "train_acc": "84.22800000000001",
+    "validation_acc": "83.69",
+    "test_acc": "84.25",
+    "training_time": "0:00:22"
+  },
+  {
+    "regularization": 0,
+    "hidden": 16,
+    "train_acc": "91.674",
+    "validation_acc": "90.86999999999999",
+    "test_acc": "91.57",
+    "training_time": "0:00:33"
+  },
+  {
+    "regularization": 0,
+    "hidden": 32,
+    "train_acc": "93.78",
+    "validation_acc": "93.55",
+    "test_acc": "93.7",
+    "training_time": "0:00:30"
+  },
+  {
+    "regularization": 0,
+    "hidden": 64,
+    "train_acc": "94.88",
+    "validation_acc": "94.46",
+    "test_acc": "94.65",
+    "training_time": "0:00:38"
+  },
+  {
+    "regularization": 0,
+    "hidden": 128,
+    "train_acc": "93.612",
+    "validation_acc": "93.74",
+    "test_acc": "93.89999999999999",
+    "training_time": "0:00:45"
+  },
+  {
+    "regularization": 10,
+    "hidden": 2,
+    "train_acc": "9.78",
+    "validation_acc": "10.280000000000001",
+    "test_acc": "9.58",
+    "training_time": "0:00:12"
+  },
+  {
+    "regularization": 10,
+    "hidden": 4,
+    "train_acc": "71.444",
+    "validation_acc": "71.02000000000001",
+    "test_acc": "71.61",
+    "training_time": "0:00:18"
+  },
+  {
+    "regularization": 10,
+    "hidden": 8,
+    "train_acc": "80.93",
+    "validation_acc": "80.33",
+    "test_acc": "81.27",
+    "training_time": "0:00:23"
+  },
+  {
+    "regularization": 10,
+    "hidden": 16,
+    "train_acc": "92.042",
+    "validation_acc": "91.86999999999999",
+    "test_acc": "92.0",
+    "training_time": "0:00:30"
+  },
+  {
+    "regularization": 10,
+    "hidden": 32,
+    "train_acc": "93.596",
+    "validation_acc": "93.17",
+    "test_acc": "93.32000000000001",
+    "training_time": "0:00:31"
+  },
+  {
+    "regularization": 10,
+    "hidden": 64,
+    "train_acc": "94.76",
+    "validation_acc": "94.47",
+    "test_acc": "94.69999999999999",
+    "training_time": "0:00:42"
+  },
+  {
+    "regularization": 10,
+    "hidden": 128,
+    "train_acc": "93.638",
+    "validation_acc": "93.71000000000001",
+    "test_acc": "93.71000000000001",
+    "training_time": "0:00:48"
+  },
+  {
+    "regularization": 20,
+    "hidden": 2,
+    "train_acc": "11.248",
+    "validation_acc": "11.18",
+    "test_acc": "11.35",
+    "training_time": "0:00:10"
+  },
+  {
+    "regularization": 20,
+    "hidden": 4,
+    "train_acc": "50.974",
+    "validation_acc": "51.5",
+    "test_acc": "51.11",
+    "training_time": "0:00:17"
+  },
+  {
+    "regularization": 20,
+    "hidden": 8,
+    "train_acc": "81.05799999999999",
+    "validation_acc": "80.81",
+    "test_acc": "80.76",
+    "training_time": "0:00:22"
+  },
+  {
+    "regularization": 20,
+    "hidden": 16,
+    "train_acc": "85.354",
+    "validation_acc": "84.95",
+    "test_acc": "85.82",
+    "training_time": "0:00:29"
+  },
+  {
+    "regularization": 20,
+    "hidden": 32,
+    "train_acc": "93.938",
+    "validation_acc": "93.47999999999999",
+    "test_acc": "93.62",
+    "training_time": "0:00:30"
+  },
+  {
+    "regularization": 20,
+    "hidden": 64,
+    "train_acc": "93.93599999999999",
+    "validation_acc": "93.36",
+    "test_acc": "93.76",
+    "training_time": "0:00:40"
+  },
+  {
+    "regularization": 20,
+    "hidden": 128,
+    "train_acc": "94.148",
+    "validation_acc": "93.87",
+    "test_acc": "94.02000000000001",
+    "training_time": "0:00:43"
+  },
+  {
+    "regularization": 30,
+    "hidden": 2,
+    "train_acc": "23.718",
+    "validation_acc": "23.93",
+    "test_acc": "23.549999999999997",
+    "training_time": "0:00:16"
+  },
+  {
+    "regularization": 30,
+    "hidden": 4,
+    "train_acc": "9.896",
+    "validation_acc": "9.700000000000001",
+    "test_acc": "9.58",
+    "training_time": "0:00:11"
+  },
+  {
+    "regularization": 30,
+    "hidden": 8,
+    "train_acc": "85.544",
+    "validation_acc": "84.99",
+    "test_acc": "85.47",
+    "training_time": "0:00:21"
+  },
+  {
+    "regularization": 30,
+    "hidden": 16,
+    "train_acc": "91.134",
+    "validation_acc": "90.06",
+    "test_acc": "90.79",
+    "training_time": "0:00:25"
+  },
+  {
+    "regularization": 30,
+    "hidden": 32,
+    "train_acc": "92.64",
+    "validation_acc": "92.36999999999999",
+    "test_acc": "92.62",
+    "training_time": "0:00:33"
+  },
+  {
+    "regularization": 30,
+    "hidden": 64,
+    "train_acc": "93.886",
+    "validation_acc": "93.32000000000001",
+    "test_acc": "93.92",
+    "training_time": "0:00:36"
+  },
+  {
+    "regularization": 30,
+    "hidden": 128,
+    "train_acc": "94.134",
+    "validation_acc": "93.62",
+    "test_acc": "93.78",
+    "training_time": "0:00:42"
+  },
+  {
+    "regularization": 40,
+    "hidden": 2,
+    "train_acc": "30.784",
+    "validation_acc": "30.53",
+    "test_acc": "30.34",
+    "training_time": "0:00:18"
+  },
+  {
+    "regularization": 40,
+    "hidden": 4,
+    "train_acc": "64.742",
+    "validation_acc": "65.03",
+    "test_acc": "65.56",
+    "training_time": "0:00:17"
+  },
+  {
+    "regularization": 40,
+    "hidden": 8,
+    "train_acc": "85.752",
+    "validation_acc": "85.28999999999999",
+    "test_acc": "85.99",
+    "training_time": "0:00:19"
+  },
+  {
+    "regularization": 40,
+    "hidden": 16,
+    "train_acc": "91.33200000000001",
+    "validation_acc": "90.98",
+    "test_acc": "91.62",
+    "training_time": "0:00:31"
+  },
+  {
+    "regularization": 40,
+    "hidden": 32,
+    "train_acc": "93.572",
+    "validation_acc": "92.97999999999999",
+    "test_acc": "93.44",
+    "training_time": "0:00:29"
+  },
+  {
+    "regularization": 40,
+    "hidden": 64,
+    "train_acc": "94.438",
+    "validation_acc": "93.87",
+    "test_acc": "94.21000000000001",
+    "training_time": "0:00:34"
+  },
+  {
+    "regularization": 40,
+    "hidden": 128,
+    "train_acc": "93.45",
+    "validation_acc": "92.62",
+    "test_acc": "93.37",
+    "training_time": "0:00:42"
+  },
+  {
+    "regularization": 50,
+    "hidden": 2,
+    "train_acc": "27.282",
+    "validation_acc": "28.02",
+    "test_acc": "26.76",
+    "training_time": "0:00:19"
+  },
+  {
+    "regularization": 50,
+    "hidden": 4,
+    "train_acc": "54.736",
+    "validation_acc": "54.7",
+    "test_acc": "53.72",
+    "training_time": "0:00:17"
+  },
+  {
+    "regularization": 50,
+    "hidden": 8,
+    "train_acc": "88.454",
+    "validation_acc": "88.61",
+    "test_acc": "88.73",
+    "training_time": "0:00:18"
+  },
+  {
+    "regularization": 50,
+    "hidden": 16,
+    "train_acc": "91.948",
+    "validation_acc": "91.19",
+    "test_acc": "92.2",
+    "training_time": "0:00:32"
+  },
+  {
+    "regularization": 50,
+    "hidden": 32,
+    "train_acc": "93.162",
+    "validation_acc": "92.91",
+    "test_acc": "93.22",
+    "training_time": "0:00:30"
+  },
+  {
+    "regularization": 50,
+    "hidden": 64,
+    "train_acc": "93.57600000000001",
+    "validation_acc": "92.77",
+    "test_acc": "93.5",
+    "training_time": "0:00:34"
+  },
+  {
+    "regularization": 50,
+    "hidden": 128,
+    "train_acc": "92.93599999999999",
+    "validation_acc": "92.56",
+    "test_acc": "93.2",
+    "training_time": "0:00:45"
+  },
+  {
+    "regularization": 60,
+    "hidden": 2,
+    "train_acc": "26.214",
+    "validation_acc": "25.869999999999997",
+    "test_acc": "25.69",
+    "training_time": "0:00:18"
+  },
+  {
+    "regularization": 60,
+    "hidden": 4,
+    "train_acc": "58.294000000000004",
+    "validation_acc": "58.24",
+    "test_acc": "58.18",
+    "training_time": "0:00:16"
+  },
+  {
+    "regularization": 60,
+    "hidden": 8,
+    "train_acc": "87.9",
+    "validation_acc": "87.42999999999999",
+    "test_acc": "87.81",
+    "training_time": "0:00:18"
+  },
+  {
+    "regularization": 60,
+    "hidden": 16,
+    "train_acc": "91.302",
+    "validation_acc": "90.93",
+    "test_acc": "91.34",
+    "training_time": "0:00:27"
+  },
+  {
+    "regularization": 60,
+    "hidden": 32,
+    "train_acc": "93.284",
+    "validation_acc": "93.22",
+    "test_acc": "93.33",
+    "training_time": "0:00:25"
+  },
+  {
+    "regularization": 60,
+    "hidden": 64,
+    "train_acc": "93.762",
+    "validation_acc": "93.30000000000001",
+    "test_acc": "93.63",
+    "training_time": "0:00:29"
+  },
+  {
+    "regularization": 60,
+    "hidden": 128,
+    "train_acc": "92.364",
+    "validation_acc": "92.64",
+    "test_acc": "92.78999999999999",
+    "training_time": "0:00:36"
+  }
 ]
