@@ -20,7 +20,6 @@ for x in range(len(data)):
         else:
             plot_data[data[x]["hidden"]].append(data[x])
 
-
 for key, value in plot_data.items():
     x_axis = []
     y_axis_train_acc = []
@@ -31,11 +30,9 @@ for key, value in plot_data.items():
         y_axis_train_acc.append(float(val["train_acc"]))
         y_axis_validation_acc.append(float(val["validation_acc"]))
         y_axis_test_acc.append(float(val["test_acc"]))
-    
 
     barWidth = 1
     width = 0.25
-
 
     fig = plt.figure(figsize=(6, 5))
     plt.xlabel('Regularization', fontweight='bold', fontsize=15)
@@ -56,24 +53,22 @@ for key, value in plot_data.items():
     plt.yticks(np.arange(0, 101, 5))
     # plt.legend()
     # plt.show()
-    plt.savefig("graphs/"+str(key)+"_hidden_neurons.png")
-    
+    plt.savefig("graphs/" + str(key) + "_hidden_neurons.png")
 
-ftr = [3600,60,1]
+ftr = [3600, 60, 1]
 
-    
-    
 for key1, value1 in hidden_vs_time.items():
     x_axis_regularization = []
     y_axis_time = []
     for val in value1:
         x_axis_regularization.append(val["hidden"])
-        new_time = sum([a*b for a,b in zip(ftr, map(int,val["training_time"].split(':')))])
+        new_time = sum([a * b for a, b in zip(ftr, map(int, val["training_time"].split(':')))])
         y_axis_time.append(new_time)
     barWidth = 1
-    plt.bar(x_axis_regularization,y_axis_time, width=barWidth, edgecolor='black',)
+    plt.bar(x_axis_regularization, y_axis_time, width=barWidth, edgecolor='black', )
     plt.xlabel('Hidden Neurons')
     plt.xticks(np.arange(0, 130, 4))
+    plt.xlim(0, 150)
     plt.ylabel('Time (s)')
+    # open the graphs in fullscreen and take screen shot
     plt.show()
-
