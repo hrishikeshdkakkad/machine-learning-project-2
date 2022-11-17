@@ -165,28 +165,31 @@ def nnObjFunction(params, *args):
     for i in range(truth_labels.shape[0]):
         truth_labels[i, int(training_label[i])] = 1
 
-    delta_l = (truth_labels - out_values) * (1.0 - out_values) * out_values
-    J_2 = -(np.transpose(delta_l).dot(hidden1_values[:, :-1]))
+    delta_l = out_values - truth_labels
+    grad_w2 = np.dot(delta_l.T, hidden1_values[:, :-1])
 
-    grad_w2 = (np.add((lambdaval * w2[:, :-1]), J_2)) / training_data.shape[0]
+    grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
 
-    sum_w1 = delta_l.dot(w2[:, :-1])
-    step1 = -(1.0 - hidden1_values[:, :-1])
-    step2 = step1 * hidden1_values[:, :-1]
-    step3 = sum_w1 * step2
-    J_1 = (np.transpose(step3[:, 0:n_hidden]).dot(training_data[:, :-1]))
-    grad_w1 = (np.add((lambdaval * w1[:, :-1]), J_1)) / training_data.shape[0]
+    sum_delta_weight2 = np.dot(delta_l, w2[:, :-1])
+    one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1]) * hidden1_values[:, :-1]
+    lft_part = sum_delta_weight2 * one_minus_z_dot_z
+    grad_w1 = np.dot(lft_part.T, training_data[:, :-1])
 
-    tot_err = np.sum((truth_labels - out_values) ** 2)
-    tot_err /= (2.0 * training_data.shape[0])
-    sum_w1_w2 = np.sum(w1) ** 2 + np.sum(w2) ** 2
-    obj_val = tot_err + lambdaval / 2.0 / training_data.shape[0] * sum_w1_w2
-    print(obj_val)
+    grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
+
+    tot_err = (-np.sum((truth_labels * np.log(out_values)) +
+                       (1 - truth_labels) * np.log(1 - out_values))) / training_data.shape[0]
+
+    regularization = lambdaval * np.add(np.sum(w1 ** 2), np.sum(w2 ** 2)) / (2 * training_data.shape[0])
+
+    obj_val = tot_err + regularization
 
     grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
     grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
 
     obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()), 0)
+
+    print(obj_val)
 
     return obj_val, obj_grad
 
