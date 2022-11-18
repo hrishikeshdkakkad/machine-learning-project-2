@@ -62,7 +62,7 @@ def nnObjFunction(params, *args):
 
     grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
 
-    sum_delta_weight2 = np.dot(delta_l, w2[:, :-1])
+    sum_delta_weight2 = np.dot(w2[:, :-1].T, delta_l.T)
     one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1].T) * hidden1_values[:, :-1].T
     lft_part = sum_delta_weight2 * one_minus_z_dot_z
     grad_w1 = np.dot(lft_part, training_data[:, :-1])
@@ -116,13 +116,13 @@ def nnPredict(w1, w2, data):
 
     data = np.hstack([data, np.ones([data.shape[0], 1])])
 
-    hidden1_values = sigmoid(np.dot(data, w1.transpose()))
+    hidden1_values = sigmoid(np.dot(data, w1.T))
     hidden1_values = np.hstack([
         hidden1_values,
         np.ones([hidden1_values.shape[0], 1])
     ])
 
-    out_values = sigmoid(np.dot(hidden1_values, w2.transpose()))
+    out_values = sigmoid(np.dot(hidden1_values, w2.T))
 
     for index in range(0, out_values.shape[0]):
         labels[index] = np.argmax(out_values[index])
@@ -152,7 +152,7 @@ train_data, train_label, validation_data, validation_label, test_data, test_labe
 # set the number of nodes in input unit (not including bias unit)
 n_input = train_data.shape[1]
 # set the number of nodes in hidden unit (not including bias unit)
-n_hidden = 1
+n_hidden = 8
 # set the number of nodes in output unit
 n_class = 2
 
