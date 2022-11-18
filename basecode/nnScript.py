@@ -215,13 +215,13 @@ def nnPredict(w1, w2, data):
 
     data = np.hstack([data, np.ones([data.shape[0], 1])])
 
-    hidden1_values = sigmoid(np.matmul(data, w1.transpose()))
+    hidden1_values = sigmoid(np.dot(data, w1.transpose()))
     hidden1_values = np.hstack([
         hidden1_values,
         np.ones([hidden1_values.shape[0], 1])
     ])
 
-    out_values = sigmoid(np.matmul(hidden1_values, w2.transpose()))
+    out_values = sigmoid(np.dot(hidden1_values, w2.T))
 
     for index in range(0, out_values.shape[0]):
         labels[index] = np.argmax(out_values[index])

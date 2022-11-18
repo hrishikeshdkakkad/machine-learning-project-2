@@ -17,8 +17,8 @@ def initializeWeights(n_in, n_out):
     # Input:
     # n_in: number of nodes of the input layer
     # n_out: number of nodes of the output layer
-                            
-    # Output: 
+
+    # Output:
     # W: matrix of random initial weights with size (n_out x (n_in + 1))"""
     epsilon = sqrt(6) / sqrt(n_in + n_out + 1)
     W = (np.random.rand(n_out, n_in + 1) * 2 * epsilon) - epsilon
@@ -57,44 +57,64 @@ def nnObjFunction(params, *args):
     for i in range(truth_labels.shape[0]):
         truth_labels[i, int(training_label[i])] = 1
 
-    delta_l = (truth_labels - out_values)
-    grad_w2 = delta_l @ out_values
+    delta_l = out_values - truth_labels
+    grad_w2 = np.dot(delta_l.T, hidden1_values[:, :-1])
 
     grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
 
-    sum_delta_weight2 = np.sum(delta_l @ w2)
-    # (sum_delta_weight2 * training_data[:, :-1]
-    one_minus_z = (1.0 - hidden1_values[:, :-1])
-    sum_dot_input = sum_delta_weight2 * training_data[:, :-1]
-    grad_w1 = (one_minus_z * hidden1_values[:, :-1]) * sum_dot_input
+    sum_delta_weight2 = np.dot(delta_l, w2[:, :-1])
+    one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1]) * hidden1_values[:, :-1]
+    lft_part = sum_delta_weight2 * one_minus_z_dot_z
+    grad_w1 = np.dot(lft_part.T, training_data[:, :-1])
+
     grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
 
-    tot_err = np.sum((truth_labels - out_values) ** 2)
-    tot_err /= (2.0 * training_data.shape[0])
-    sum_w1_w2 = np.sum(w1) ** 2 + np.sum(w2) ** 2
-    obj_val = tot_err + lambdaval / 2.0 / training_data.shape[0] * sum_w1_w2
+    tot_err = (-np.sum((truth_labels * np.log(out_values)) +
+                       (1 - truth_labels) * np.log(1 - out_values))) / training_data.shape[0]
+
+    regularization = lambdaval * np.add(np.sum(w1 ** 2), np.sum(w2 ** 2)) / (2 * training_data.shape[0])
+
+    obj_val = tot_err + regularization
 
     grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
     grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
 
     obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()), 0)
 
+    print(obj_val)
+
     return obj_val, obj_grad
 
 
 # Replace this with your nnPredict implementation
 def nnPredict(w1, w2, data):
+    """% nnPredict predicts the label of data given the parameter w1, w2 of Neural
+        % Network.
+
+        % Input:
+        % w1: matrix of weights of connections from input layer to hidden layers.
+        %     w1(i, j) represents the weight of connection from unit i in input
+        %     layer to unit j in hidden layer.
+        % w2: matrix of weights of connections from hidden layer to output layers.
+        %     w2(i, j) represents the weight of connection from unit i in input
+        %     layer to unit j in hidden layer.
+        % data: matrix of data. Each row of this matrix represents the feature
+        %       vector of a particular image
+
+        % Output:
+        % label: a column vector of predicted labels"""
+
     labels = np.empty([data.shape[0], 1])
 
     data = np.hstack([data, np.ones([data.shape[0], 1])])
 
-    hidden1_values = sigmoid(np.matmul(data, w1.transpose()))
+    hidden1_values = sigmoid(np.dot(data, w1.transpose()))
     hidden1_values = np.hstack([
         hidden1_values,
         np.ones([hidden1_values.shape[0], 1])
     ])
 
-    out_values = sigmoid(np.matmul(hidden1_values, w2.transpose()))
+    out_values = sigmoid(np.dot(hidden1_values, w2.transpose()))
 
     for index in range(0, out_values.shape[0]):
         labels[index] = np.argmax(out_values[index])
@@ -124,7 +144,7 @@ train_data, train_label, validation_data, validation_label, test_data, test_labe
 # set the number of nodes in input unit (not including bias unit)
 n_input = train_data.shape[1]
 # set the number of nodes in hidden unit (not including bias unit)
-n_hidden = 32
+n_hidden = 16
 # set the number of nodes in output unit
 n_class = 2
 
@@ -134,7 +154,7 @@ initial_w2 = initializeWeights(n_hidden, n_class)
 # unroll 2 weight matrices into single column vector
 initialWeights = np.concatenate((initial_w1.flatten(), initial_w2.flatten()), 0)
 # set the regularization hyper-parameter
-lambdaval = 0
+lambdaval = 40
 args = (n_input, n_hidden, n_class, train_data, train_label, lambdaval)
 
 # Train Neural Network using fmin_cg or minimize from scipy,optimize module. Check documentation for a working example
