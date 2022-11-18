@@ -43,49 +43,45 @@ def nnObjFunction(params, *args):
             np.ones([training_data.shape[0], 1])
         ]
     )
-    hidden1_values = sigmoid(np.matmul(training_data, w1.transpose()))
+    hidden1_values = sigmoid(np.matmul(training_data, w1.T))
 
     hidden1_values = np.hstack([
         hidden1_values,
         np.ones([hidden1_values.shape[0], 1])
     ])
 
-    out_values = sigmoid(np.matmul(hidden1_values, w2.transpose()))
+    out_values = sigmoid(np.matmul(hidden1_values, w2.T))
 
     # One hot encoding
     truth_labels = np.zeros([training_label.shape[0], out_values.shape[1]])
     for i in range(truth_labels.shape[0]):
-        truth_labels[i, int(training_label[i])] = 1
+        truth_labels[i][int(training_label[i])] = 1
 
+    # Backpropagation
     delta_l = out_values - truth_labels
-    grad_w2 = np.dot(delta_l.T, hidden1_values[:, :-1])
+    grad_w2 = np.dot(delta_l.T, hidden1_values)
 
-    grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
+    grad_w2 = (np.add((lambdaval * w2), grad_w2)) / training_data.shape[0]
 
-    sum_delta_weight2 = np.dot(w2[:, :-1].T, delta_l.T)
-    one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1].T) * hidden1_values[:, :-1].T
-    lft_part = sum_delta_weight2 * one_minus_z_dot_z
-    grad_w1 = np.dot(lft_part, training_data[:, :-1])
+    hidden_delta = np.dot(w2[:, :-1].T, delta_l.T) * (hidden1_values.T * (1.0 - hidden1_values.T))
+    grad_w1 = np.dot(hidden_delta, training_data)
 
-    grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
+    grad_w1 = (np.add((lambdaval * w1), grad_w1)) / training_data.shape[0]
 
     tot_err = (-np.add(
         np.dot(
             truth_labels.flatten(),
-            np.log(out_values).flatten().T
+            np.log(out_values.flatten()).T
         ),
         np.dot(
-            (1 - truth_labels).flatten(),
-            np.log(1 - out_values).flatten().T
+            (1 - truth_labels.flatten()),
+            np.log(1 - out_values.flatten()).T
         )
     ) / training_data.shape[0])
 
     regularization = lambdaval * np.add(np.sum(w1 ** 2), np.sum(w2 ** 2)) / (2 * training_data.shape[0])
 
     obj_val = tot_err + regularization
-
-    grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
-    grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
 
     obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()), 0)
 
