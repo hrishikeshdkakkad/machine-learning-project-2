@@ -63,14 +63,22 @@ def nnObjFunction(params, *args):
     grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
 
     sum_delta_weight2 = np.dot(delta_l, w2[:, :-1])
-    one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1]) * hidden1_values[:, :-1]
+    one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1].T) * hidden1_values[:, :-1].T
     lft_part = sum_delta_weight2 * one_minus_z_dot_z
-    grad_w1 = np.dot(lft_part.T, training_data[:, :-1])
+    grad_w1 = np.dot(lft_part, training_data[:, :-1])
 
     grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
 
-    tot_err = (-np.sum((truth_labels * np.log(out_values)) +
-                       (1 - truth_labels) * np.log(1 - out_values))) / training_data.shape[0]
+    tot_err = (-np.add(
+        np.dot(
+            truth_labels.flatten(),
+            np.log(out_values).flatten().T
+        ),
+        np.dot(
+            (1 - truth_labels).flatten(),
+            np.log(1 - out_values).flatten().T
+        )
+    ) / training_data.shape[0])
 
     regularization = lambdaval * np.add(np.sum(w1 ** 2), np.sum(w2 ** 2)) / (2 * training_data.shape[0])
 

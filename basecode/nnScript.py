@@ -177,8 +177,8 @@ def nnObjFunction(params, *args):
 
     grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
 
-    tot_err = (-np.sum((truth_labels * np.log(out_values)) +
-                       (1 - truth_labels) * np.log(1 - out_values))) / training_data.shape[0]
+    tot_err = -(np.add((truth_labels * np.log(out_values)),
+                       np.dot((1 - truth_labels), np.log(1 - out_values)))) / training_data.shape[0]
 
     regularization = lambdaval * np.add(np.sum(w1 ** 2), np.sum(w2 ** 2)) / (2 * training_data.shape[0])
 
