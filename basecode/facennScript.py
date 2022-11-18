@@ -144,7 +144,7 @@ train_data, train_label, validation_data, validation_label, test_data, test_labe
 # set the number of nodes in input unit (not including bias unit)
 n_input = train_data.shape[1]
 # set the number of nodes in hidden unit (not including bias unit)
-n_hidden = 16
+n_hidden = 1
 # set the number of nodes in output unit
 n_class = 2
 
@@ -154,7 +154,7 @@ initial_w2 = initializeWeights(n_hidden, n_class)
 # unroll 2 weight matrices into single column vector
 initialWeights = np.concatenate((initial_w1.flatten(), initial_w2.flatten()), 0)
 # set the regularization hyper-parameter
-lambdaval = 40
+lambdaval = 0
 args = (n_input, n_hidden, n_class, train_data, train_label, lambdaval)
 
 # Train Neural Network using fmin_cg or minimize from scipy,optimize module. Check documentation for a working example
