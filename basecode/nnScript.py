@@ -104,41 +104,41 @@ def preprocess():
 
 def nnObjFunction(params, *args):
     """% nnObjFunction computes the value of objective function (negative log 
-    %   likelihood error function with regularization) given the parameters 
-    %   of Neural Networks, the training data, their corresponding training
-    %   labels and lambda - regularization hyper-parameter.
+       %   likelihood error function with regularization) given the parameters
+       %   of Neural Networks, the training data, their corresponding training
+       %   labels and lambda - regularization hyper-parameter.
 
-    % Input:
-    % params: vector of weights of 2 matrices w1 (weights of connections from
-    %     input layer to hidden layer) and w2 (weights of connections from
-    %     hidden layer to output layer) where all of the weights are contained
-    %     in a single vector.
-    % n_input: number of node in input layer (not include the bias node)
-    % n_hidden: number of node in hidden layer (not include the bias node)
-    % n_class: number of node in output layer (number of classes in
-    %     classification problem
-    % training_data: matrix of training data. Each row of this matrix
-    %     represents the feature vector of a particular image
-    % training_label: the vector of truth label of training images. Each entry
-    %     in the vector represents the truth label of its corresponding image.
-    % lambda: regularization hyper-parameter. This value is used for fixing the
-    %     overfitting problem.
-       
-    % Output: 
-    % obj_val: a scalar value representing value of error function
-    % obj_grad: a SINGLE vector of gradient value of error function
-    % NOTE: how to compute obj_grad
-    % Use backpropagation algorithm to compute the gradient of error function
-    % for each weights in weight matrices.
+       % Input:
+       % params: vector of weights of 2 matrices w1 (weights of connections from
+       %     input layer to hidden layer) and w2 (weights of connections from
+       %     hidden layer to output layer) where all of the weights are contained
+       %     in a single vector.
+       % n_input: number of node in input layer (not include the bias node)
+       % n_hidden: number of node in hidden layer (not include the bias node)
+       % n_class: number of node in output layer (number of classes in
+       %     classification problem
+       % training_data: matrix of training data. Each row of this matrix
+       %     represents the feature vector of a particular image
+       % training_label: the vector of truth label of training images. Each entry
+       %     in the vector represents the truth label of its corresponding image.
+       % lambda: regularization hyper-parameter. This value is used for fixing the
+       %     overfitting problem.
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % reshape 'params' vector into 2 matrices of weight w1 and w2
-    % w1: matrix of weights of connections from input layer to hidden layers.
-    %     w1(i, j) represents the weight of connection from unit j in input 
-    %     layer to unit i in hidden layer.
-    % w2: matrix of weights of connections from hidden layer to output layers.
-    %     w2(i, j) represents the weight of connection from unit j in hidden 
-    %     layer to unit i in output layer."""
+       % Output:
+       % obj_val: a scalar value representing value of error function
+       % obj_grad: a SINGLE vector of gradient value of error function
+       % NOTE: how to compute obj_grad
+       % Use backpropagation algorithm to compute the gradient of error function
+       % for each weights in weight matrices.
+
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       % reshape 'params' vector into 2 matrices of weight w1 and w2
+       % w1: matrix of weights of connections from input layer to hidden layers.
+       %     w1(i, j) represents the weight of connection from unit j in input
+       %     layer to unit i in hidden layer.
+       % w2: matrix of weights of connections from hidden layer to output layers.
+       %     w2(i, j) represents the weight of connection from unit j in hidden
+       %     layer to unit i in output layer."""
 
     n_input, n_hidden, n_class, training_data, training_label, lambdaval = args
 
@@ -166,28 +166,33 @@ def nnObjFunction(params, *args):
         truth_labels[i, int(training_label[i])] = 1
 
     delta_l = out_values - truth_labels
-    grad_w2 = np.dot(delta_l.T, hidden1_values[:, :-1])
+    grad_w2 = np.dot(delta_l.T, hidden1_values)
 
-    grad_w2 = (np.add((lambdaval * w2[:, :-1]), grad_w2)) / training_data.shape[0]
+    grad_w2 = (np.add((lambdaval * w2), grad_w2)) / training_data.shape[0]
 
     sum_delta_weight2 = np.dot(delta_l, w2[:, :-1])
     one_minus_z_dot_z = (1.0 - hidden1_values[:, :-1]) * hidden1_values[:, :-1]
     lft_part = sum_delta_weight2 * one_minus_z_dot_z
-    grad_w1 = np.dot(lft_part.T, training_data[:, :-1])
+    grad_w1 = np.dot(lft_part.T, training_data)
 
-    grad_w1 = (np.add((lambdaval * w1[:, :-1]), grad_w1)) / training_data.shape[0]
+    grad_w1 = (np.add((lambdaval * w1), grad_w1)) / training_data.shape[0]
 
-    tot_err = -(np.add((truth_labels * np.log(out_values)),
-                       np.dot((1 - truth_labels), np.log(1 - out_values)))) / training_data.shape[0]
+    obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()), 0)
+
+    tot_err = (-np.add(
+        np.dot(
+            truth_labels.flatten(),
+            np.log(out_values).flatten().T
+        ),
+        np.dot(
+            1 - truth_labels.flatten(),
+            np.log(1 - out_values).flatten().T
+        )
+    ) / training_data.shape[0])
 
     regularization = lambdaval * np.add(np.sum(w1 ** 2), np.sum(w2 ** 2)) / (2 * training_data.shape[0])
 
     obj_val = tot_err + regularization
-
-    grad_w1 = np.hstack([grad_w1, w1[:, -1].reshape(w1.shape[0], 1)])
-    grad_w2 = np.hstack([grad_w2, w2[:, -1].reshape(w2.shape[0], 1)])
-
-    obj_grad = np.concatenate((grad_w1.flatten(), grad_w2.flatten()), 0)
 
     print(obj_val)
 
