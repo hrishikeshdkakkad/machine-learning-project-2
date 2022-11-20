@@ -1,6 +1,8 @@
 '''
 Comparing single layer MLP with deep MLP (using PyTorch)
 '''
+import time
+from datetime import timedelta
 
 import torch
 from scipy.io import loadmat
@@ -159,8 +161,17 @@ cost = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 # Training cycle
+start_time = time.time()
+
 for t in range(training_epochs):
     print(f"Epoch {t + 1}\n-------------------------------")
     train(train_dataloader, model, cost, optimizer)
 print("Optimization Finished!")
+end_time = time.time()
+
+# Difference between start and end-times.
+time_dif = end_time - start_time
+time_del = str(timedelta(seconds=int(round(time_dif))))
+
+print("Time usage: " + time_del)
 test(test_dataloader, model, cost)

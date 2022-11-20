@@ -1,6 +1,8 @@
 '''
 Comparing single layer MLP with deep MLP (using TensorFlow)
 '''
+import time
+from datetime import timedelta
 
 import numpy as np
 import pickle
@@ -206,7 +208,17 @@ args = (n_input, n_hidden, n_class, train_data, train_label, lambdaval)
 # Train Neural Network using fmin_cg or minimize from scipy,optimize module. Check documentation for a working example
 opts = {'maxiter': 50}  # Preferred value.
 
+start_time = time.time()
 nn_params = minimize(nnObjFunction, initialWeights, jac=True, args=args, method='CG', options=opts)
+
+end_time = time.time()
+
+# Difference between start and end-times.
+time_dif = end_time - start_time
+time_del = str(timedelta(seconds=int(round(time_dif))))
+
+print("Time usage: " + time_del)
+
 params = nn_params.get('x')
 # Reshape nnParams from 1D vector into w1 and w2 matrices
 w1 = params[0:n_hidden * (n_input + 1)].reshape((n_hidden, (n_input + 1)))
