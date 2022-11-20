@@ -140,7 +140,7 @@ def test(dataloader, model, loss_fn):
 
 # Parameters
 learning_rate = 0.05
-training_epochs = 50
+training_epochs = 9
 batch_size = 150
 
 # Get cpu or gpu device for training.

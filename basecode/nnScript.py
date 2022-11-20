@@ -5,6 +5,7 @@ import time
 from scipy.optimize import minimize
 from scipy.io import loadmat
 from math import sqrt
+import pickle_helper as pik_hel
 
 
 def initializeWeights(n_in, n_out):
@@ -236,82 +237,86 @@ def nnPredict(w1, w2, data):
 
 """**************Neural Network Script Starts here********************************"""
 
+train_data, train_label, validation_data, validation_label, test_data, test_label = preprocess()
 
-def runScript(reg_param, hidden):
-    train_data, train_label, validation_data, validation_label, test_data, test_label = preprocess()
+print('Start Time: ' + strftime("%Y-%m-%d %H:%M:%S"))
+start_time = time.time()
+#  Train Neural Network
 
-    print('Start Time: ' + strftime("%Y-%m-%d %H:%M:%S"))
-    start_time = time.time()
-    #  Train Neural Network
+# set the number of nodes in input unit (not including bias unit)
+n_input = train_data.shape[1]
 
-    # set the number of nodes in input unit (not including bias unit)
-    n_input = train_data.shape[1]
+# set the number of nodes in hidden unit (not including bias unit)
+n_hidden = 64
 
-    # set the number of nodes in hidden unit (not including bias unit)
-    n_hidden = hidden
+# set the number of nodes in output unit
+n_class = 10
 
-    # set the number of nodes in output unit
-    n_class = 10
+# initialize the weights into some random matrices
+initial_w1 = initializeWeights(n_input, n_hidden)
+initial_w2 = initializeWeights(n_hidden, n_class)
 
-    # initialize the weights into some random matrices
-    initial_w1 = initializeWeights(n_input, n_hidden)
-    initial_w2 = initializeWeights(n_hidden, n_class)
+# unroll 2 weight matrices into single column vector
+initialWeights = np.concatenate((initial_w1.flatten(), initial_w2.flatten()), 0)
+# set the regularization hyper-parameter
+lambdaval = 0
 
-    # unroll 2 weight matrices into single column vector
-    initialWeights = np.concatenate((initial_w1.flatten(), initial_w2.flatten()), 0)
-    # set the regularization hyper-parameter
-    lambdaval = reg_param
+args = (n_input, n_hidden, n_class, train_data, train_label, lambdaval)
 
-    args = (n_input, n_hidden, n_class, train_data, train_label, lambdaval)
+# Train Neural Network using fmin_cg or minimize from scipy,optimize module. Check documentation for a working example
 
-    # Train Neural Network using fmin_cg or minimize from scipy,optimize module. Check documentation for a working example
+opts = {'maxiter': 50}  # Preferred value.
 
-    opts = {'maxiter': 50}  # Preferred value.
+nn_params = minimize(nnObjFunction, initialWeights, jac=True, args=args, method='CG', options=opts)
 
-    nn_params = minimize(nnObjFunction, initialWeights, jac=True, args=args, method='CG', options=opts)
+print("Training done")
 
-    print("Training done")
+end_time = time.time()
 
-    end_time = time.time()
+# Difference between start and end-times.
+time_dif = end_time - start_time
+time_del = str(timedelta(seconds=int(round(time_dif))))
 
-    # Difference between start and end-times.
-    time_dif = end_time - start_time
-    time_del = str(timedelta(seconds=int(round(time_dif))))
+print("Time usage: " + time_del)
 
-    print("Time usage: " + time_del)
+print("lambda:" + str(lambdaval), "hidden:" + str(n_hidden))
+# In Case you want to use fmin_cg, you may have to split the nnObjectFunction to two functions nnObjFunctionVal
+# and nnObjGradient. Check documentation for this function before you proceed.
+# nn_params, cost = fmin_cg(nnObjFunctionVal, initialWeights, nnObjGradient,args = args, maxiter = 50)
 
-    print("lambda:" + str(lambdaval), "hidden:" + str(n_hidden))
-    # In Case you want to use fmin_cg, you may have to split the nnObjectFunction to two functions nnObjFunctionVal
-    # and nnObjGradient. Check documentation for this function before you proceed.
-    # nn_params, cost = fmin_cg(nnObjFunctionVal, initialWeights, nnObjGradient,args = args, maxiter = 50)
+# Reshape nnParams from 1D vector into w1 and w2 matrices
+w1 = nn_params.x[0:n_hidden * (n_input + 1)].reshape((n_hidden, (n_input + 1)))
+w2 = nn_params.x[(n_hidden * (n_input + 1)):].reshape((n_class, (n_hidden + 1)))
 
-    # Reshape nnParams from 1D vector into w1 and w2 matrices
-    w1 = nn_params.x[0:n_hidden * (n_input + 1)].reshape((n_hidden, (n_input + 1)))
-    w2 = nn_params.x[(n_hidden * (n_input + 1)):].reshape((n_class, (n_hidden + 1)))
+pik_hel.save_model(
+    train_data.shape[1],
+    n_hidden,
+    w1,
+    w2,
+    lambdaval
+)
 
-    # Test the computed parameters
+# Test the computed parameters
 
-    predicted_label = nnPredict(w1, w2, train_data)
+predicted_label = nnPredict(w1, w2, train_data)
 
-    # find the accuracy on Training Dataset
+# find the accuracy on Training Dataset
 
-    train_acc = str(100 * np.mean((predicted_label == train_label).astype(float)))
+train_acc = str(100 * np.mean((predicted_label == train_label).astype(float)))
 
-    print('\n Training set Accuracy:' + train_acc + '%')
+print('\n Training set Accuracy:' + train_acc + '%')
 
-    predicted_label = nnPredict(w1, w2, validation_data)
+predicted_label = nnPredict(w1, w2, validation_data)
 
-    # find the accuracy on Validation Dataset
+# find the accuracy on Validation Dataset
 
-    validation_acc = str(100 * np.mean((predicted_label == validation_label).astype(float)))
+validation_acc = str(100 * np.mean((predicted_label == validation_label).astype(float)))
 
-    print('\n Validation set Accuracy:' + validation_acc + '%')
+print('\n Validation set Accuracy:' + validation_acc + '%')
 
-    predicted_label = nnPredict(w1, w2, test_data)
+predicted_label = nnPredict(w1, w2, test_data)
 
-    # find the accuracy on Validation Dataset
-    test_acc = str(100 * np.mean((predicted_label == test_label).astype(float)))
+# find the accuracy on Validation Dataset
+test_acc = str(100 * np.mean((predicted_label == test_label).astype(float)))
 
-    print('\n Test set Accuracy:' + test_acc + '%')
-
-    return train_acc, validation_acc, test_acc, time_del
+print('\n Test set Accuracy:' + test_acc + '%')
